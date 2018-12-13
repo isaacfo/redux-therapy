@@ -41,10 +41,21 @@ const note = (state, action) => {
     switch(action.type) {
         case ACTION_UPDATE.type:
         // if so do stuff
-        defualt:
+            return {
+                note: {
+                    content: action.content
+                }
+            }
+        default:
             return state;
     }
 }
 
 
-// $5- Creat a store that uses your reducer
+// #5- Creat a store that uses your reducer
+const store = createStore(note);
+// #5 and a half - export the store and the action creators 
+module.exports = {
+    store,
+    updateContent
+};
