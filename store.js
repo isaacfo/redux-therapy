@@ -45,7 +45,7 @@ const ACTION_DEL = {
 // #3- Write action creator functions
 // These are fucntions that use/return those descriptions
 // of changes you can make to state
-const updateContent = (id, content) => {
+const updateNote = (id, content) => {
     return {
         ...ACTION_UPDATE,
         id,
@@ -113,6 +113,13 @@ const note = (state, action) => {
                     }
                 ]
             }
+        case ACTION_DEL.type:
+            return {
+                notes:state.notes.filter(note => {
+                    return note.id !== action.id;
+            })
+        }
+
         default:
             return state;
     }
@@ -124,5 +131,7 @@ const store = createStore(note);
 // #5 and a half - export the store and the action creators 
 module.exports = {
     store,
-    updateContent
+    updateNote,
+    addNote,
+    deleteNote
 };

@@ -1,6 +1,8 @@
 const {
     store,
-    updateContent
+    update,
+    addNote,
+    deleteNote
 } = require('./store');
 
 
@@ -17,8 +19,12 @@ store.subscribe(() => {
     console.log('-------------')
 });
 
-store.dispatch(updateContent('buy some milk'));
-store.dispatch(updateContent('drink the milk'));
-store.dispatch(updateContent('buy some cereal'));
-store.dispatch(updateContent('eat the cereal'));
-store.dispatch(updateContent('uu la la'));``
+store.dispatch(updateNote('buy some milk'));
+store.dispatch(updateNote('drink the milk'));
+store.dispatch(updateNote('buy some cereal'));
+store.dispatch(updateNote('eat the cereal'));
+store.dispatch(updateNote('uu la la'));``
+
+const idOfLastOne = store.getState().notes[store.getState().notes.length -1].id;
+store.dispatch(updateNote)(idOfLastOne, 'go to lunch');
+store.dispatch(deleteNote(idOfLastOne));
